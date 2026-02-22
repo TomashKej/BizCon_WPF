@@ -1,0 +1,97 @@
+﻿<local:JedenViewBase x:Class="MVVMFirma.Views.NewEmployeeView"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+         xmlns:local="clr-namespace:MVVMFirma.Views"
+         mc:Ignorable="d" 
+         d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Background="White">
+        <!--dwie kolumny i 6 wierszy-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Content="Employee Number" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=EmployeeNumber,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Column="0" Grid.Row="1" Content="First Name" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=FirstName,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Column="0" Grid.Row="2" Content="Middle Name" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=MiddleName,UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Column="0" Grid.Row="3" Content="Last Name" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" Text="{Binding Path=LastName,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Column="0" Grid.Row="4" Content="Sex" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" Text="{Binding Path=Sex,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Column="0" Grid.Row="5" Content="Date of Birth" Margin="0,8,0,8"/>
+        <DatePicker  Grid.Column="1" Grid.Row="5" Margin="0,8,0,8" Text="{Binding Path=DateOfBirth,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Column="0" Grid.Row="6" Content="Position ID" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="6" ItemsSource="{Binding Positions}"
+                  DisplayMemberPath="PositionName" SelectedValuePath="PositionId"
+                  SelectedValue="{Binding SelectedPositionId, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Column="0" Grid.Row="7" Content="Department ID" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="7" ItemsSource="{Binding Departments}"
+                  DisplayMemberPath="DepartmentName" SelectedValuePath="DepartmentId"
+                  SelectedValue="{Binding SelectedDepartmentId, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Column="0" Grid.Row="8" Content="Grade ID" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="8" ItemsSource="{Binding Grades}"
+                  DisplayMemberPath="GradeName" SelectedValuePath="GradeId"
+                  SelectedValue="{Binding SelectedGradeId, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Column="0" Grid.Row="9" Content="Hire Date" Margin="0,8,0,8"/>
+        <DatePicker  Grid.Column="1" Grid.Row="9" Margin="0,8,0,8" Text="{Binding Path=HireDate,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Column="0" Grid.Row="10" Content="Termination Date" Margin="0,8,0,8"/>
+        <DatePicker  Grid.Column="1" Grid.Row="10" Margin="0,8,0,8" Text="{Binding Path=TerminationDate,UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Column="0" Grid.Row="11" Content="Address ID" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="11" ItemsSource="{Binding Addresses}"
+                  DisplayMemberPath="AddressLine1" SelectedValuePath="AddressId"
+                  SelectedValue="{Binding SelectedAddressId, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Column="0" Grid.Row="12" Content="Phone no" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="12" Margin="0,8,0,8" Text="{Binding Path=PhoneNumber,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Column="0" Grid.Row="13" Content="Email Address" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="13" Margin="0,8,0,8" Text="{Binding Path=EmailAddress,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Column="0" Grid.Row="14" Content="Manager ID" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="14" ItemsSource="{Binding Managers}"
+                  DisplayMemberPath="ManagerId" SelectedValuePath="ManagerId"
+                  SelectedValue="{Binding SelectedManagerId, Mode=TwoWay}"/>
+
+        <Label Grid.Column="0" Grid.Row="15" Content="Site ID" Margin="0,8,0,8"/>
+        <ComboBox Grid.Column="1" Grid.Row="15" ItemsSource="{Binding Sites}"
+                  DisplayMemberPath="SiteName" SelectedValuePath="SiteId"
+                  SelectedValue="{Binding SelectedSiteId, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+
+        <Label Grid.Column="0" Grid.Row="16" Content="Notes" Margin="0,8,0,8"/>
+        <TextBox Grid.Column="1" Grid.Row="16" Margin="0,8,0,8" Text="{Binding Path=Notes,UpdateSourceTrigger=PropertyChanged}"/>
+    </Grid>
+</local:JedenViewBase>

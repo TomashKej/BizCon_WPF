@@ -1,0 +1,79 @@
+# =========================
+# Visual Studio
+# =========================
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# =========================
+# Build results
+# =========================
+bin/
+obj/
+[Bb]uild/
+[Bb]uilds/
+x64/
+x86/
+[Aa]rchive/
+TestResults/
+
+# =========================
+# NuGet
+# =========================
+packages/
+*.nupkg
+*.snupkg
+.nuget/
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Rider / ReSharper
+# =========================
+.idea/
+_ReSharper*/
+*.DotSettings.user
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# Publish / deployment
+# =========================
+publish/
+*.publishsettings
+
+# =========================
+# EF / Database local files
+# =========================
+*.mdf
+*.ldf
+
+# =========================
+# Temporary files
+# =========================
+*.tmp
+*.temp
+
+# =========================
+# Visual Studio Code (if used)
+# =========================
+.vscode/
+
+# =========================
+# Secrets
+# =========================
+*.pfx
+*.key
+*.cer
+appsettings.Development.json
+appsettings.Local.json

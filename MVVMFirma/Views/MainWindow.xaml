@@ -1,0 +1,190 @@
+﻿<Window x:Class="MVVMFirma.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  
+        Title="MVVMFirma" Height="700" Width="1000" WindowState="Maximized"
+        xmlns:vm="clr-namespace:MVVMFirma.Views"
+        >
+    <!-- Define connection between ResourceDictionary and Window below -->
+    <Window.Resources>
+        <ResourceDictionary Source="MainWindowResources.xaml"  />
+    </Window.Resources>
+    
+    <!-- Grid label is the main container for all UI elements -->
+    <Grid>
+        
+        <!-- The following code defines the columns in the grid layout -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/> <!--This column is for the sidebar -->
+            <ColumnDefinition Width="50"/> <!--This column is "extension" for the logo area (That also would be a 'starting point' for workspace area)-->
+            <ColumnDefinition Width="*"/>  <!--This column is for top bar and workspace area-->
+        </Grid.ColumnDefinitions>
+
+        <!-- The following code defines the rows in the grid layout -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <!-- Top menu bar commands area -->
+        <Menu Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,0,2">
+            <MenuItem Header="_File">
+                <MenuItem Header="Print"/>
+                <MenuItem Header="Save as.."/>
+                <MenuItem Header="Refresh"/>
+                <MenuItem Header="Export as.."/>
+            </MenuItem>
+            <MenuItem Header="_Program">
+                <MenuItem Header="Settings"/>
+                <MenuItem Header="User Management"/>
+                <MenuItem Header="Data Management"/>
+                <MenuItem Header="System Logs"/>
+                <MenuItem Header="About"/>
+                <MenuItem Header="Help"/>
+                <MenuItem Header="Check for Updates"/>
+                <MenuItem Header="Exit"/>
+            </MenuItem>
+            <MenuItem Header="_Account">
+                <MenuItem Header="Profile"/>
+                <MenuItem Header="Logout"/>
+            </MenuItem>
+        </Menu>
+        
+        <!-- The following code defines the logo area -->
+        <Border Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="1">
+            <Image  Stretch="Uniform"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Source="/Resources/BizConLogoV2png.png"/>
+        </Border>
+
+        <!-- The following code defines the toolbar area -->
+        <ToolBar Grid.Column="2" Grid.Row="1" 
+                 Style="{StaticResource MainToolBarStyle}">
+            
+            <UniformGrid Rows="1" Columns="5">
+
+                <RadioButton Style="{StaticResource ModuleToggleButtonStyle}"
+                             Content="All Modules"
+                             GroupName="MainModules"
+                             IsChecked="True"
+                             Command="{Binding ShowAllModulesCommand}" />
+                
+                <RadioButton Style="{StaticResource ModuleToggleButtonStyle}"
+                             Content="Human resources"
+                             GroupName="MainModules"
+                             Command="{Binding ShowHumanResourcesCommand}"/>
+                                
+                <RadioButton Style="{StaticResource ModuleToggleButtonStyle}"
+                             Content="Master Data"
+                             GroupName="MainModules"
+                             Command="{Binding ShowMasterDataCommand}"/>
+
+                <RadioButton Style="{StaticResource ModuleToggleButtonStyle}"
+                             Content="Finance"
+                             GroupName="MainModules"
+                             Command="{Binding ShowFinanceCommand}"/>
+
+                <RadioButton Style="{StaticResource ModuleToggleButtonStyle}"
+                             Content="Administration"
+                             GroupName="MainModules"
+                             Command="{Binding ShowAdministrationCommand}"/>
+            
+            </UniformGrid>
+        
+        </ToolBar>
+
+        <!-- The following code defines the left menu area -->
+        <Border Grid.Row="2" Grid.Column="0">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/> <!-- header -->
+                    <RowDefinition Height="*"/> <!-- For the main content area -->
+                </Grid.RowDefinitions>
+
+                <!-- Menu Header -->
+                <HeaderedContentControl
+                        Header="Menu"
+                        Style="{StaticResource MainHCCStyle}"/>
+
+                <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+
+                    <ContentControl
+                        Content="{Binding Path=Commands}"
+                        ContentTemplate="{StaticResource CommandsTemplate}"/>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+
+        <!-- The following code defines the workspace area -->
+        <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="Grid.Column" Value="2"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=MenuToggleButton, Path=IsChecked}" Value="False">
+                            <Setter Property="Grid.Column" Value="0"/>
+                            <Setter Property="Grid.ColumnSpan" Value="3"/>
+                            <Setter Property="Margin" Value="45,0,0,0"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <HeaderedContentControl 
+                Header="Workspace Area"
+                Content="{Binding Path=Workspaces}"
+                ContentTemplate="{StaticResource WorkspacesTemplate}"
+                Style="{StaticResource MainHCCStyle}"
+            />
+        </Border>
+
+        <!-- The following code defines the status bar area -->
+        <StatusBar Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel LastChildFill="False"/>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <!-- USER -->
+            <StatusBarItem>
+                <Border Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="4" Padding="4,1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="User: " FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding CurrentUser.Username}" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StatusBarItem>
+
+            <!-- DEPARTMENT -->
+            <StatusBarItem>
+                <Border Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="4" Padding="4,1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Department: " FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding CurrentUserDepartment}" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StatusBarItem>
+
+            <!-- DATE AND TIME -->
+            <StatusBarItem DockPanel.Dock="Right">
+                <Border Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="4" Padding="4,1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding CurrentDateTime, StringFormat='{}{0:dd.MM.yyyy}'}" FontWeight="SemiBold"/>
+                    </StackPanel>
+                </Border>
+            </StatusBarItem>
+
+            <StatusBarItem DockPanel.Dock="Right">
+                <Border Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="4" Padding="4,1">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding CurrentDateTime, StringFormat='{}{0:HH:mm}'}" FontWeight="SemiBold"/>
+                    </StackPanel>
+                </Border>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>

@@ -1,0 +1,22 @@
+﻿<local:WszystkieViewBase x:Class="MVVMFirma.Views.AllPositionsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
+             xmlns:local="clr-namespace:MVVMFirma.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="1000">
+    <Grid Background="White">
+        <DataGrid 
+            AutoGenerateColumns="False" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Position" Binding="{Binding PositionName}"/>
+                <DataGridTextColumn Header="Department" Binding="{Binding DepartmentName}"/>
+                <DataGridTextColumn Header="Grade" Binding="{Binding GradeName}"/>
+                <DataGridTextColumn Header="Salary" Binding="{Binding Salary, TargetNullValue='No Data', StringFormat=£{0:N2}}"/>
+                <DataGridTextColumn Header="Notes" Binding="{Binding Notes}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</local:WszystkieViewBase>
