@@ -4,7 +4,7 @@ Business-oriented WPF (.NET Framework 4.8) sample app showcasing MVVM with Entit
 </p>
 
 ## Overview
-MVVMFirma demonstrates a production-like MVVM structure on WPF with a SQL Server backend. It includes:
+BizCon demonstrates a production-like MVVM structure on WPF with a SQL Server backend. It includes:
 - User login, main window navigation
 - Sales Report (turnover by product and date range)
 - Payroll Cost Summary (department/position/employee filters)
