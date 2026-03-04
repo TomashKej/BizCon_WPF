@@ -1,4 +1,4 @@
-<h1 align="center">BizCon - Warehouse Management System</h1>
+<h1 align="center">BizCon - Warehouse Management System (MVVM)</h1>
 <p align="center">
 Business-oriented WPF (.NET Framework 4.8) sample app showcasing MVVM with Entity Framework 6: sales reporting, payroll cost summary, and inventory search.
 </p>
